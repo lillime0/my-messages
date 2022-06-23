@@ -8,10 +8,10 @@
     "install-server": "npm install",
     "install-client": "cd client && npm install",
     "install-dependencies": " npm run install-client && npm run install-server ",
-    "build-client": "cd client && npm run build",
+    "build": "cd client && npm run build",
     "server": "nodemon server --ignore client",
     "client": "npm start --prefix client",
-    "heroku-postbuild": "npm run install-client && npm run build-client",
+    "heroku-postbuild": "npm run install-client && npm run build",
     "dev": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\"",
     "start": "node server.js"
   },

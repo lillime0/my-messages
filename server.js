@@ -18,25 +18,25 @@ import authRouter from "./routes/auth.js";
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 
-// only when ready to deploy
-const __dirname = dirname(fileURLToPath(import.meta.url));
-app.use(express.static(path.resolve(__dirname, "./client/build")));
-app.set("trust proxy", 1);
+// app.set("trust proxy", 1);
 app.use(mongoSanitize());
 app.use(express.json());
 app.use(cors());
-app.use(helmet());
 app.use(xss());
+app.use(helmet());
 // app.use(express.urlencoded({ extended: true }));
+
+// only when ready to deploy
+const __dirname = dirname(fileURLToPath(import.meta.url));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.resolve(__dirname, "./client/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+  });
+}
 
 app.use("/api/auth", authRouter);
 app.use("/api/messages", messagesRouter);
-
-// only when ready to deploy
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-});
-
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
