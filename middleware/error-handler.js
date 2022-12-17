@@ -15,7 +15,8 @@ const errorHandlerMiddleware = (err, req, res, next) => {
   }
   if (err.name === "CastError") {
     customError.statusCode = 404;
-    customError.msg = `Nothing found with id: ${err.value}`;
+    customError.msg = `No message found with id: ${err.value}`;
+    // cant find what you're looking for
   }
 
   return res.status(customError.statusCode).json({ msg: customError.msg });

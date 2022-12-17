@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { AppContext } from "../context/messageContext";
+import { useAppContext } from "../context/messageContext";
 
 const ProtectedRoute = ({ children }) => {
-  const { user } = useContext(AppContext);
+  const { user } = useAppContext();
   return user ? children : <Navigate to="/login" />;
 };
 export default ProtectedRoute;

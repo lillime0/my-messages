@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { reducer } from "./reducer";
@@ -22,7 +22,8 @@ import {
   UPDATE_USER,
   UPDATE_USER_ERROR,
   FETCH_MESSAGES,
-  FETCH_MESSAGES_ERROR
+  FETCH_MESSAGES_ERROR,
+  NEW_MESSAGE
 } from "./actions";
 
 const token = localStorage.getItem("token");
@@ -30,6 +31,9 @@ const user = localStorage.getItem("user");
 const defaultTheme = matchMedia("(prefers-color-scheme: dark)").matches
   ? "dark"
   : "light";
+document.documentElement.className = localStorage.getItem("theme")
+  ? localStorage.getItem("theme")
+  : defaultTheme;
 
 const initState = {
   theme: defaultTheme,
@@ -51,6 +55,9 @@ const initState = {
 };
 
 export const AppContext = createContext();
+export const useAppContext = () => {
+  return useContext(AppContext);
+};
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initState);
   const navigate = useNavigate();
@@ -187,9 +194,6 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    document.documentElement.className = localStorage.getItem("theme");
-  }, []);
   return (
     <AppContext.Provider
       value={{

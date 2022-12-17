@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { AppContext } from "../context/messageContext";
+import { useAppContext } from "../context/messageContext";
 import { FaTimes, FaSpinner } from "react-icons/fa";
 import { DELETE_MESSAGE_ERROR } from "../context/actions";
 
@@ -12,7 +11,7 @@ const Alert = ({ id }) => {
     error,
     errorType,
     isError
-  } = useContext(AppContext);
+  } = useAppContext();
 
   return (
     <article className="alert-overlay">

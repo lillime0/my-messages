@@ -1,10 +1,9 @@
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaSignOutAlt, FaAdjust, FaUser } from "react-icons/fa";
-import { AppContext } from "../context/messageContext";
+import { useAppContext } from "../context/messageContext";
 
 const Navbar = () => {
-  const { logout, toggleTheme } = useContext(AppContext);
+  const { logout, toggleTheme } = useAppContext();
 
   return (
     <nav className="nav">

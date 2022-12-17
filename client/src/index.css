@@ -226,7 +226,13 @@ p.contact-text {
   color: #101010;
 }
 .nav-icons
-  :where(button:hover, button:active, .nav-btn:hover, .nav-btn:active, .nav-btn:focus) {
+  :where(
+    button:hover,
+    button:active,
+    .nav-btn:hover,
+    .nav-btn:active,
+    .nav-btn:focus
+  ) {
   color: #f1f1f1;
 }
 .messages-container {
@@ -278,6 +284,16 @@ p.contact-text {
   margin-block-start: 1em;
   font-size: 1rem;
   line-height: 1.5;
+}
+.message-text a {
+  color: var(--main-text);
+}
+.message-text a:visited,
+.message-text a:active {
+  color: var(--main-text);
+}
+.message-text a:hover {
+  text-decoration: underline;
 }
 @media screen and (min-width: 700px) {
   .message-item .message-text {

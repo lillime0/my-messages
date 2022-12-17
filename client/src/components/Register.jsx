@@ -1,6 +1,6 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import logo from "../logo.svg";
-import { AppContext } from "../context/messageContext";
+import { useAppContext } from "../context/appContext";
 import { FaEye, FaSpinner } from "react-icons/fa";
 import { REGISTER_ERROR } from "../context/actions";
 
@@ -15,7 +15,7 @@ const Register = () => {
     isError,
     errorType,
     error
-  } = useContext(AppContext);
+  } = useAppContext();
 
   const [data, setData] = useState({
     name: "",

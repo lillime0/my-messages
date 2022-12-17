@@ -1,7 +1,7 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { FaPen, FaEye, FaSpinner } from "react-icons/fa";
 import { UPDATE_USER_ERROR } from "../context/actions";
-import { AppContext } from "../context/messageContext";
+import { useAppContext } from "../context/messageContext";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
@@ -16,7 +16,7 @@ const Profile = () => {
     toggleShownPassword,
     errorType,
     status
-  } = useContext(AppContext);
+  } = useAppContext();
   const [isDisabled, setIsDisabled] = useState(true);
   const [data, setData] = useState({
     name: user?.name,

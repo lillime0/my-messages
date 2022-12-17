@@ -18,7 +18,8 @@ import {
   OPEN_ALERT,
   CLOSE_ALERT,
   CLEAR_VALUES,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  NEW_MESSAGE
 } from "./actions";
 
 export const reducer = (state, action) => {

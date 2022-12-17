@@ -1,5 +1,5 @@
-import { useEffect, useContext } from "react";
-import { AppContext } from "../context/messageContext";
+import { useEffect } from "react";
+import { useAppContext } from "../context/messageContext";
 import Alert from "./Alert";
 import { FaSpinner } from "react-icons/fa";
 import logo from "../logo.svg";
@@ -16,7 +16,7 @@ const Contact = () => {
     handleChange,
     createMessage,
     isLoading
-  } = useContext(AppContext);
+  } = useAppContext();
   const messageLength = message.length;
   const isInvalid = email === "" || messageLength < 10;
 

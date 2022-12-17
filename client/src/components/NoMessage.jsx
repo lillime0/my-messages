@@ -1,11 +1,9 @@
-import { useContext } from "react";
-import { AppContext } from "../context/messageContext";
+import { useAppContext } from "../context/messageContext";
 import { FaSpinner } from "react-icons/fa";
 import { FETCH_MESSAGES_ERROR } from "../context/actions";
 
 const NoMessage = () => {
-  const { getAllMessages, errorType, error, isLoading } =
-    useContext(AppContext);
+  const { getAllMessages, errorType, error, isLoading } = useAppContext();
   return (
     <section className="no-messages" aria-label="no message">
       <p>

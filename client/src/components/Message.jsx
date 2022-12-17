@@ -1,11 +1,12 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { FaCheck, FaCopy, FaTrash, FaReply } from "react-icons/fa";
-import { AppContext } from "../context/messageContext";
+import { useAppContext } from "../context/messageContext";
 import Alert from "./Alert";
 import moment from "moment";
+import Linkify from "linkify-react";
 
 const Message = ({ _id, email, message, createdAt }) => {
-  const { isAlertOpen, openAlert } = useContext(AppContext);
+  const { isAlertOpen, openAlert } = useAppContext();
   const [readMore, setReadMore] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   let date = moment(createdAt);
@@ -30,10 +31,12 @@ const Message = ({ _id, email, message, createdAt }) => {
         {email}
       </a>
       <p className="message-text">
-        {readMore ? message : `${message.substring(0, 300)}...`}
-        <button className="message-btn" onClick={toggleReadMore}>
-          {readMore ? "show less" : "read more"}
-        </button>
+        <Linkify options={{ target: "blank" }}>
+          {readMore ? message : `${message.substring(0, 300)}...`}
+          <button className="message-btn" onClick={toggleReadMore}>
+            {readMore ? "show less" : "read more"}
+          </button>
+        </Linkify>
       </p>
       <p className="message-date">{date}</p>
       <button

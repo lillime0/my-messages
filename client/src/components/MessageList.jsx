@@ -1,17 +1,17 @@
-import { useContext } from "react";
 import { FaEnvelope } from "react-icons/fa";
-import { AppContext } from "../context/messageContext";
+import { useAppContext } from "../context/messageContext";
 import Message from "./Message";
 import Loading from "./Loading";
 import NoMessage from "./NoMessage";
 
 const MessageList = () => {
-  const { isLoading, getAllMessages, messages, count } = useContext(AppContext);
+  const { isLoading, getAllMessages, messages, count } = useAppContext();
 
   return (
     <>
-      {isLoading && <Loading />}
-      {count === 0 ? (
+      {isLoading ? (
+        <Loading />
+      ) : count === 0 ? (
         <NoMessage />
       ) : (
         <section className="messages-container" aria-label="all messages">
