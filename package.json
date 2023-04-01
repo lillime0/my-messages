@@ -11,8 +11,7 @@
     "build": "cd client && npm run build",
     "server": "nodemon server --ignore client",
     "client": "npm start --prefix client",
-    "prebuild": "npm run install-client",
-    "postbuild": "npm run install-server",
+    "prebuild": "npm run install-client && npm run install-server",
     "dev": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\"",
     "start": "node server.js"
   },
